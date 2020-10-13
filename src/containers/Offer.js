@@ -3,9 +3,8 @@ import { useParams } from "react-router-dom";
 
 import axios from "axios";
 import Loader from "react-loader-spinner";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
-import Slider from "react-slick";
+import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
+import { Carousel } from "react-responsive-carousel";
 
 const Offer = () => {
   const params = useParams();
@@ -32,6 +31,7 @@ const Offer = () => {
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
+    arrows: true,
   };
 
   return isLoading ? (
@@ -43,13 +43,24 @@ const Offer = () => {
       width={80}
     />
   ) : (
-    <div>
-      <Slider {...settings}>
-        <img src={data.product_image.secure_url} />
+    <div style={{ width: 500 }}>
+      <Carousel showThumbs={false} showStatus={false} showIndicators={false}>
         {data.product_pictures.map((elem, index) => {
-          return <img src={elem.secure_url} alt={data.product_name} />;
+          return (
+            <div>
+              <img
+                style={{
+                  height: 800,
+                  objectFit: "contain",
+                  backgroundColor: "white",
+                }}
+                src={elem.secure_url}
+                alt={data.product_name}
+              />
+            </div>
+          );
         })}
-      </Slider>
+      </Carousel>
     </div>
   );
 };
