@@ -41,18 +41,25 @@ const CheckoutForm = ({ productName, totalPrice }) => {
   const stripe = useStripe();
   const elements = useElements();
 
+  console.log(totalPrice);
+
   const handleSubmit = async (event) => {
     try {
       event.preventDefault();
-      /*
-      const { error, paymentMethod } = await stripe.createToken();
+      // On récupère ici les données bancaires que l'utilisateur rentre
+      const cardElement = elements.getElement(CardElement);
+      const stripeResponse = await stripe.createToken(cardElement, {
+        name: "L'id de l'acheteur",
+      });
+
+      // console.log(stripeResponse);
 
       const response = await axios.post(
         "https://lereacteur-vinted-api.herokuapp.com/payment",
         {
           amount: totalPrice,
           title: productName,
-          token: paymentMethod.id,
+          token: stripeResponse.token.id,
         }
       );
 
@@ -61,7 +68,6 @@ const CheckoutForm = ({ productName, totalPrice }) => {
       } else {
         alert("Une erreur est survenue, veuillez réssayer.");
       }
-       */
     } catch (error) {
       console.log(error.message);
     }
