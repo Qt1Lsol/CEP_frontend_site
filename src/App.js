@@ -15,8 +15,8 @@ import Checkout from "./containers/Checkout";
 import Payment from "./containers/Payment";
 
 import { library } from "@fortawesome/fontawesome-svg-core";
-import { faSearch } from "@fortawesome/free-solid-svg-icons";
-library.add(faSearch);
+import { faSearch, faCheck, faRedo } from "@fortawesome/free-solid-svg-icons";
+library.add(faSearch, faCheck, faRedo);
 
 function App() {
   const [token, setToken] = useState(Cookies.get("token") || null);

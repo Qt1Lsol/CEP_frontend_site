@@ -4,7 +4,7 @@ import { useHistory } from "react-router-dom";
 const Card = ({ data }) => {
   const history = useHistory();
 
-  console.log(data.owner);
+  console.log(data);
 
   return (
     <div className="card-container">
