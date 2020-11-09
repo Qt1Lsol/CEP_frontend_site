@@ -41,19 +41,11 @@ const Offer = () => {
   ) : (
     <div className="offer-body">
       <div className="offer-container">
-        <div style={{ width: 500, marginTop: 30 }}>
-          <Carousel
-            showThumbs={false}
-            showStatus={false}
-            showIndicators={false}
-          >
+        <div className="offer-pictures">
+          <Carousel showStatus={false} showArrows={false}>
             {data.product_pictures.length === 0 ? (
               <img
-                style={{
-                  height: 800,
-                  objectFit: "cover",
-                  backgroundColor: "white",
-                }}
+                className="offer-picture"
                 src={data.product_image.secure_url}
                 alt={data.product_name}
               />
@@ -62,11 +54,7 @@ const Offer = () => {
                 return (
                   <div key={elem.asset_id}>
                     <img
-                      style={{
-                        height: 800,
-                        objectFit: "cover",
-                        backgroundColor: "white",
-                      }}
+                      className="offer-picture"
                       src={elem.secure_url}
                       alt={data.product_name}
                     />
@@ -76,40 +64,41 @@ const Offer = () => {
             )}
           </Carousel>
         </div>
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            backgroundColor: "white",
-            height: 300,
-            padding: 40,
-            margin: "30px 0 0 50px",
-          }}
-        >
-          <span>{data.product_price} €</span>
+        <div className="offer-infos" style={{}}>
+          <div>
+            <span className="offer-price">{data.product_price} €</span>
 
-          {data.product_details.map((elem, index) => {
-            const keys = Object.keys(elem);
-            return (
-              <div key={index}>
-                <span>{keys[0]}</span>
-                <span>{elem[keys[0]]}</span>
-              </div>
-            );
-          })}
-
-          <span>{data.product_name}</span>
-          <span>{data.product_description}</span>
-          <div
-            onClick={() => alert("Go to user profile !")}
-            className="offer-avatar-username"
-          >
-            <img
-              alt={data.product_name}
-              src={data.owner.account.avatar.secure_url}
-            />
-            <span>{data.owner.account.username}</span>
+            <ul className="offer-list">
+              {data.product_details.map((elem, index) => {
+                const keys = Object.keys(elem);
+                return (
+                  <li key={index} className="">
+                    <span>{keys[0]}</span>
+                    <span>{elem[keys[0]]}</span>
+                  </li>
+                );
+              })}
+            </ul>
           </div>
+
+          <div className="divider" />
+
+          <div className="offer-content">
+            <p className="name">{data.product_name}</p>
+            <p className="description">{data.product_description}</p>
+
+            <div
+              onClick={() => alert("Go to user profile !")}
+              className="offer-avatar-username"
+            >
+              <img
+                alt={data.product_name}
+                src={data.owner.account.avatar.secure_url}
+              />
+              <span>{data.owner.account.username}</span>
+            </div>
+          </div>
+
           <button
             onClick={() => {
               history.push({
