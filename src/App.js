@@ -11,12 +11,11 @@ import Signup from "./containers/Signup";
 import Login from "./containers/Login";
 import Publish from "./containers/Publish";
 import Offer from "./containers/Offer";
-import Checkout from "./containers/Checkout";
 import Payment from "./containers/Payment";
 
 import { library } from "@fortawesome/fontawesome-svg-core";
-import { faSearch } from "@fortawesome/free-solid-svg-icons";
-library.add(faSearch);
+import { faSearch, faCheck, faRedo } from "@fortawesome/free-solid-svg-icons";
+library.add(faSearch, faCheck, faRedo);
 
 function App() {
   const [token, setToken] = useState(Cookies.get("token") || null);
@@ -48,9 +47,6 @@ function App() {
         </Route>
         <Route path="/offer/:id">
           <Offer />
-        </Route>
-        <Route path="/checkout/:id">
-          <Checkout />
         </Route>
         <Route path="/payment">
           <Payment />
