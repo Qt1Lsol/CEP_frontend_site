@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { Redirect } from "react-router-dom";
+import { Redirect, useHistory } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const Publish = ({ token }) => {
@@ -16,30 +16,42 @@ const Publish = ({ token }) => {
   const [city, setCity] = useState("");
   const [acceptedExchange, setAcceptedExchange] = useState(false);
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    const formData = new FormData();
-    formData.append("picture", file);
-    formData.append("title", title);
-    formData.append("description", description);
-    formData.append("price", price);
-    formData.append("size", selectedSize);
-    formData.append("color", color);
-    formData.append("condition", selectedWearRate);
-    formData.append("city", city);
-    formData.append("brand", selectedBrand);
+  const history = useHistory();
 
-    const response = await axios.post(
-      "https://lereacteur-vinted-api.herokuapp.com/offer/publish",
-      formData,
-      {
-        headers: {
-          Authorization: "Bearer " + token,
-          "Content-Type": "multipart/form-data",
-        },
+  const handleSubmit = async (e) => {
+    try {
+      e.preventDefault();
+      const formData = new FormData();
+      formData.append("picture", file);
+      formData.append("title", title);
+      formData.append("description", description);
+      formData.append("price", price);
+      formData.append("size", selectedSize);
+      formData.append("color", color);
+      formData.append("condition", selectedWearRate);
+      formData.append("city", city);
+      formData.append("brand", selectedBrand);
+
+      const response = await axios.post(
+        "https://lereacteur-vinted-api.herokuapp.com/offer/publish",
+        formData,
+        {
+          headers: {
+            Authorization: "Bearer " + token,
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
+      // console.log(response.data);
+      if (response.data._id) {
+        // redirectoin vers l'offre
+        history.push(`/offer/${response.data._id}`);
+      } else {
+        alert("Une erreur est survenue, veuillez réssayer");
       }
-    );
-    console.log(response.data);
+    } catch (error) {
+      alert(error.message);
+    }
   };
 
   return token ? (
@@ -210,10 +222,9 @@ const Publish = ({ token }) => {
             </div>
           </div>
           <div className="form-button-div">
-            <button className="save-offer" type="button">
-              Sauvegarder le brouillon
+            <button type="submit" className="form-validation">
+              Ajouter
             </button>
-            <button className="form-validation">Ajouter</button>
           </div>
         </form>
       </div>
