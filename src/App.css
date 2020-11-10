@@ -267,24 +267,22 @@
 
 /* OFFER ************************************* */
 .offer-body {
+  height: calc(100vh - 60px);
   background-color: #ebedee;
-  height: calc(100vh - 59px);
+  /* height: calc(100vh - 59px); */
 }
 
 .offer-container {
   width: 1280px;
   margin: 0px auto;
   display: flex;
+  justify-content: space-around;
   padding: 30px;
   gap: 30px;
 }
 
-.offer-pictures {
-  flex: 1;
-}
-
 .offer-picture {
-  height: 400px;
+  height: 600px;
   object-fit: cover;
 }
 
@@ -317,19 +315,16 @@
   flex: 1;
   font-size: 14px;
   text-transform: uppercase;
-
 }
 
 .offer-list span:nth-child(odd) {
   color: #999;
-
 }
 
 .offer-list span:nth-child(even) {
   color: #666;
   font-weight: bold;
 }
-
 
 .offer-infos .divider {
   display: block;
@@ -348,15 +343,15 @@
 
 .offer-infos button {
   color: #fff;
-  background: #09B1BA;
-  border: solid 1px #09B1BA;
+  background: #09b1ba;
+  border: solid 1px #09b1ba;
   border-radius: 4px;
   width: 100%;
   font-size: 16px;
   height: 36px;
   padding: 0 16px;
   line-height: 36px;
-  margin-top: 32px
+  margin-top: 32px;
 }
 
 .offer-infos button:hover {

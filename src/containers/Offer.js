@@ -3,8 +3,6 @@ import { useParams, useHistory } from "react-router-dom";
 
 import axios from "axios";
 import Loader from "react-loader-spinner";
-import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
-import { Carousel } from "react-responsive-carousel";
 
 const Offer = () => {
   const params = useParams();
@@ -42,27 +40,19 @@ const Offer = () => {
     <div className="offer-body">
       <div className="offer-container">
         <div className="offer-pictures">
-          <Carousel showStatus={false} showArrows={false}>
-            {data.product_pictures.length === 0 ? (
-              <img
-                className="offer-picture"
-                src={data.product_image.secure_url}
-                alt={data.product_name}
-              />
-            ) : (
-              data.product_pictures.map((elem, index) => {
-                return (
-                  <div key={elem.asset_id}>
-                    <img
-                      className="offer-picture"
-                      src={elem.secure_url}
-                      alt={data.product_name}
-                    />
-                  </div>
-                );
-              })
-            )}
-          </Carousel>
+          {data.product_pictures.length === 0 ? (
+            <img
+              className="offer-picture"
+              src={data.product_image.secure_url}
+              alt={data.product_name}
+            />
+          ) : (
+            <img
+              className="offer-picture"
+              src={data.product_pictures[0].secure_url}
+              alt={data.product_name}
+            />
+          )}
         </div>
         <div className="offer-infos" style={{}}>
           <div>
