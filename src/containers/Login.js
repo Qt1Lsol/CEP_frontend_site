@@ -49,7 +49,7 @@ const Login = ({ setUser }) => {
             setEmail(event.target.value);
             setErrorMessage("");
           }}
-          placeholder="adresse email"
+          placeholder="Adresse email"
           type="email"
         />
         <input
