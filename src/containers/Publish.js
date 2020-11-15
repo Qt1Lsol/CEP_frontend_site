@@ -61,7 +61,6 @@ const Publish = ({ token }) => {
 
         <form onSubmit={handleSubmit}>
           <div className="file-select">
-            <p>Ajoute jusqu'à 20 photos</p>
             {preview ? (
               <div className="dashed-preview-image">
                 <img src={preview} alt="pré-visualisation" />
