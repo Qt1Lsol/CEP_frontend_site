@@ -81,10 +81,12 @@ const Offer = () => {
               onClick={() => alert("Go to user profile !")}
               className="offer-avatar-username"
             >
-              <img
-                alt={data.product_name}
-                src={data.owner.account.avatar.secure_url}
-              />
+              {data.owner.account.avatar && (
+                <img
+                  alt={data.product_name}
+                  src={data.owner.account.avatar.secure_url}
+                />
+              )}
               <span>{data.owner.account.username}</span>
             </div>
           </div>
