@@ -12,12 +12,15 @@ const Card = ({ data }) => {
         onClick={() => alert("Go to user profile !")}
         className="card-avatar-username"
       >
-        <img
-          alt={data.product_name}
-          src={data.owner.account.avatar.secure_url}
-        />
+        {data.owner.account.avatar && (
+          <img
+            alt={data.product_name}
+            src={data.owner.account.avatar.secure_url}
+          />
+        )}
         <span>{data.owner.account.username}</span>
       </div>
+
       <div onClick={() => history.push(`offer/${data._id}`)}>
         <img alt={data.title} src={data.product_image.secure_url} />
         <div className="card-price-size-brand">
