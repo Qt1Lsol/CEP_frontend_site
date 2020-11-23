@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import axios from "axios";
-import Card from "../components/Card";
-import forme from "../assets/forme.svg";
+import Card from "../../components/Card";
+import tear from "../../assets/images/tear.svg";
 import Loader from "react-loader-spinner";
+
+import "./index.css";
 
 const Home = () => {
   const history = useHistory();
@@ -33,7 +35,7 @@ const Home = () => {
   ) : (
     <>
       <div className="home-hero-bg-img">
-        <img src={forme} alt="forme" className="home-hero-forme" />
+        <img src={tear} alt="forme" className="home-hero-forme" />
         <div>
           <div className="home-hero-ready">
             Prêts à faire du tri dans vos placards ?

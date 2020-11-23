@@ -4,6 +4,8 @@ import { useParams, useHistory } from "react-router-dom";
 import axios from "axios";
 import Loader from "react-loader-spinner";
 
+import "./index.css";
+
 const Offer = () => {
   const params = useParams();
   const history = useHistory();

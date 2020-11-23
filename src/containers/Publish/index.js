@@ -3,6 +3,8 @@ import axios from "axios";
 import { Redirect, useHistory } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
+import "./index.css";
+
 const Publish = ({ token }) => {
   const [file, setFile] = useState({});
   const [preview, setPreview] = useState("");

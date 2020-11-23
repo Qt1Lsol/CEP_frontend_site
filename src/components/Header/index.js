@@ -1,7 +1,9 @@
 import React from "react";
-import logo from "../assets/logo.png";
+import logo from "../../assets/images/logo.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useHistory } from "react-router-dom";
+
+import "./index.css";
 
 const Header = ({ token, setUser }) => {
   const history = useHistory();

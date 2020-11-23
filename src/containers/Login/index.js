@@ -3,6 +3,8 @@ import { Link, useHistory, useLocation } from "react-router-dom";
 import axios from "axios";
 import Loader from "react-loader-spinner";
 
+import "./index.css";
+
 const Login = ({ setUser }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
