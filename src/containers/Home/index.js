@@ -1,29 +1,14 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { useHistory } from "react-router-dom";
-import axios from "axios";
 import Card from "../../components/Card";
 import tear from "../../assets/images/tear.svg";
 import Loader from "react-loader-spinner";
 
 import "./index.css";
 
-const Home = () => {
+const Home = ({ data, isLoading }) => {
   const history = useHistory();
 
-  const [data, setData] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      const response = await axios.get(
-        "https://lereacteur-vinted-api.herokuapp.com/offers"
-      );
-      // console.log(response.data);
-      setData(response.data);
-      setIsLoading(false);
-    };
-    fetchData();
-  }, []);
   return isLoading ? (
     <Loader
       className="home-loader"
@@ -51,9 +36,10 @@ const Home = () => {
       </div>
 
       <div className="home-card-wrapper">
-        {data.offers.map((card, index) => {
-          return <Card key={index} data={card} />;
-        })}
+        {data.offers &&
+          data.offers.map((card, index) => {
+            return <Card key={index} data={card} />;
+          })}
       </div>
     </>
   );

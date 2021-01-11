@@ -8705,6 +8705,11 @@ react-loader-spinner@^3.1.14:
     babel-runtime "^6.26.0"
     prop-types "^15.7.2"
 
+react-range@^1.8.3:
+  version "1.8.3"
+  resolved "https://registry.yarnpkg.com/react-range/-/react-range-1.8.3.tgz#166303250111919e728db70e572dc09994888aba"
+  integrity sha512-CVSpl/y/PFHqxwktWbHCRvl9Tm2bxqp997lZcqv/CgLOjMtk8mYySNkGYGysPbUEakR96ZiJBssrXxwCdePMSw==
+
 react-responsive-carousel@^3.2.10:
   version "3.2.10"
   resolved "https://registry.yarnpkg.com/react-responsive-carousel/-/react-responsive-carousel-3.2.10.tgz#2de13bdc131d78b8b92d3653d295a77d8c20cf2e"

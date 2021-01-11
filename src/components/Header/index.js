@@ -1,11 +1,17 @@
 import React from "react";
 import logo from "../../assets/images/logo.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useHistory } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
+import PriceRange from "../PriceRange";
 
-import "./index.css";
-
-const Header = ({ token, setUser }) => {
+const Header = ({
+  token,
+  setUser,
+  setFetchRangeValues,
+  sortPrice,
+  setSortPrice,
+  setSearch,
+}) => {
   const history = useHistory();
 
   return (
@@ -23,9 +29,38 @@ const Header = ({ token, setUser }) => {
           type="text"
           className="search-input"
           placeholder="Recherche des articles"
+          onChange={(event) => setSearch(event.target.value)}
         />
         <FontAwesomeIcon icon="search" className="search-input-icon" />
+        <div>
+          <div
+            style={{
+              marginTop: 25,
+              fontSize: "12px",
+              display: "flex",
+              alignItems: "center",
+            }}
+          >
+            <span style={{ marginRight: 10 }}>Trier par prix : </span>
+            <span className="checkbox">
+              <input type="checkbox" checked={sortPrice} name="price" />
+              <div
+                className="wrapper"
+                onClick={() => {
+                  setSortPrice(!sortPrice);
+                }}
+              >
+                <div className="knob">
+                  <span>{sortPrice ? "⇣" : "⇡"}</span>
+                </div>
+              </div>
+            </span>
+            <span style={{ marginRight: 10 }}>Prix entre : </span>
+            <PriceRange setFetchRangeValues={setFetchRangeValues} />
+          </div>
+        </div>
       </div>
+
       {token ? (
         <button
           onClick={() => {
