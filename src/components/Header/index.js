@@ -1,7 +1,7 @@
 import React from "react";
 import logo from "../../assets/images/logo.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useHistory, Link } from "react-router-dom";
+import { useHistory, Link, useLocation } from "react-router-dom";
 import PriceRange from "../PriceRange";
 
 const Header = ({
@@ -13,6 +13,8 @@ const Header = ({
   setSearch,
 }) => {
   const history = useHistory();
+
+  const location = useLocation();
 
   return (
     <div className="header-container">
@@ -32,33 +34,35 @@ const Header = ({
           onChange={(event) => setSearch(event.target.value)}
         />
         <FontAwesomeIcon icon="search" className="search-input-icon" />
-        <div>
-          <div
-            style={{
-              marginTop: 25,
-              fontSize: "12px",
-              display: "flex",
-              alignItems: "center",
-            }}
-          >
-            <span style={{ marginRight: 10 }}>Trier par prix : </span>
-            <span className="checkbox">
-              <input type="checkbox" checked={sortPrice} name="price" />
-              <div
-                className="wrapper"
-                onClick={() => {
-                  setSortPrice(!sortPrice);
-                }}
-              >
-                <div className="knob">
-                  <span>{sortPrice ? "⇣" : "⇡"}</span>
+        {location.pathname === "/" ? (
+          <div>
+            <div
+              style={{
+                marginTop: 25,
+                fontSize: "12px",
+                display: "flex",
+                alignItems: "center",
+              }}
+            >
+              <span style={{ marginRight: 10 }}>Trier par prix : </span>
+              <span className="checkbox">
+                <input type="checkbox" checked={sortPrice} name="price" />
+                <div
+                  className="wrapper"
+                  onClick={() => {
+                    setSortPrice(!sortPrice);
+                  }}
+                >
+                  <div className="knob">
+                    <span>{sortPrice ? "⇣" : "⇡"}</span>
+                  </div>
                 </div>
-              </div>
-            </span>
-            <span style={{ marginRight: 10 }}>Prix entre : </span>
-            <PriceRange setFetchRangeValues={setFetchRangeValues} />
+              </span>
+              <span style={{ marginRight: 10 }}>Prix entre : </span>
+              <PriceRange setFetchRangeValues={setFetchRangeValues} />
+            </div>
           </div>
-        </div>
+        ) : null}
       </div>
 
       {token ? (
