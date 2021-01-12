@@ -3,22 +3,19 @@ import { useHistory } from "react-router-dom";
 
 const Card = ({ data }) => {
   const history = useHistory();
-
-  // console.log(data);
-
   return (
     <div className="card-container">
       <div
         onClick={() => alert("Go to user profile !")}
         className="card-avatar-username"
       >
-        {data.owner.account.avatar && (
+        {data.owner && data.owner.account.avatar && (
           <img
             alt={data.product_name}
             src={data.owner.account.avatar.secure_url}
           />
         )}
-        <span>{data.owner.account.username}</span>
+        <span>{data.owner && data.owner.account.username}</span>
       </div>
 
       <div onClick={() => history.push(`offer/${data._id}`)}>
