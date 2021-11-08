@@ -1,8 +1,8 @@
 import React from "react";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const Card = ({ data }) => {
-  const history = useHistory();
+  const navigate = useNavigate();
   return (
     <div className="card-container">
       <div
@@ -18,7 +18,7 @@ const Card = ({ data }) => {
         <span>{data.owner && data.owner.account.username}</span>
       </div>
 
-      <div onClick={() => history.push(`offer/${data._id}`)}>
+      <div onClick={() => navigate(`offer/${data._id}`)}>
         <img alt={data.title} src={data.product_image.secure_url} />
         <div className="card-price-size-brand">
           <span>{data.product_price} €</span>

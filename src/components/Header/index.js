@@ -1,7 +1,7 @@
 import React from "react";
 import logo from "../../assets/images/logo.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useHistory, Link, useLocation } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import PriceRange from "../PriceRange";
 
 const Header = ({
@@ -12,7 +12,7 @@ const Header = ({
   setSortPrice,
   setSearch,
 }) => {
-  const history = useHistory();
+  const navigate = useNavigate();
 
   const location = useLocation();
 
@@ -20,7 +20,7 @@ const Header = ({
     <div className="header-container">
       <div
         onClick={() => {
-          history.push("/");
+          navigate("/");
         }}
       >
         <img className="header-logo" src={logo} alt="vinted" />
@@ -78,7 +78,7 @@ const Header = ({
         <div>
           <button
             onClick={() => {
-              history.push("/signup");
+              navigate("/signup");
             }}
             className="header-button button-login-signup button-signup"
           >
@@ -86,7 +86,7 @@ const Header = ({
           </button>
           <button
             onClick={() => {
-              history.push("/login");
+              navigate("/login");
             }}
             className="header-button button-login-signup"
           >
@@ -96,7 +96,7 @@ const Header = ({
       )}
       <button
         onClick={() => {
-          history.push("/publish");
+          navigate("/publish");
         }}
         className="header-button button-sold"
       >

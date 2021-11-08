@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link, useHistory } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import axios from "axios";
 
@@ -9,7 +9,7 @@ const Signup = ({ setUser }) => {
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState(null);
 
-  const history = useHistory();
+  const navigate = useNavigate();
 
   const handleSubmit = async (event) => {
     try {
@@ -24,7 +24,7 @@ const Signup = ({ setUser }) => {
       );
       if (response.data.token) {
         setUser(response.data.token);
-        history.push("/");
+        navigate("/");
       } else {
         alert("Une erreur est survenue, veuillez réssayer.");
       }

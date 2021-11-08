@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useParams, useHistory } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 
 import axios from "axios";
 import Loader from "react-loader-spinner";
@@ -8,7 +8,7 @@ import "./index.css";
 
 const Offer = () => {
   const params = useParams();
-  const history = useHistory();
+  const navigate = useNavigate();
 
   const [data, setData] = useState({});
   const [isLoading, setIsLoading] = useState(true);
@@ -23,7 +23,6 @@ const Offer = () => {
       const response = await axios.get(
         `https://lereacteur-vinted-api.herokuapp.com/offer/${params.id}`
       );
-      // console.log(response.data);
       setData(response.data);
       setIsLoading(false);
     };
@@ -95,8 +94,7 @@ const Offer = () => {
 
           <button
             onClick={() => {
-              history.push({
-                pathname: "/payment",
+              navigate("/payment", {
                 state: {
                   productName: data.product_name,
                   totalPrice: total,

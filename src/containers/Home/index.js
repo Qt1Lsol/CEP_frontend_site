@@ -1,5 +1,5 @@
 import React from "react";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Card from "../../components/Card";
 import tear from "../../assets/images/tear.svg";
 import Loader from "react-loader-spinner";
@@ -7,7 +7,7 @@ import Loader from "react-loader-spinner";
 import "./index.css";
 
 const Home = ({ data, isLoading }) => {
-  const history = useHistory();
+  const navigate = useNavigate();
 
   return isLoading ? (
     <Loader
@@ -26,7 +26,7 @@ const Home = ({ data, isLoading }) => {
             Prêts à faire du tri dans vos placards ?
             <button
               onClick={() => {
-                history.push("/publish");
+                navigate("/publish");
               }}
             >
               Commencer à vendre

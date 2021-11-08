@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link, useHistory, useLocation } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
 import Loader from "react-loader-spinner";
 
@@ -11,7 +11,7 @@ const Login = ({ setUser }) => {
   const [errorMessage, setErrorMessage] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
 
-  const history = useHistory();
+  const navigate = useNavigate();
   const location = useLocation();
   const fromPublish = location.state?.fromPublish ? true : null;
 
@@ -29,7 +29,7 @@ const Login = ({ setUser }) => {
       if (response.data.token) {
         setUser(response.data.token);
         setIsLoading(false);
-        history.push(fromPublish ? "/publish" : "/");
+        navigate(fromPublish ? "/publish" : "/");
       } else {
         alert("Une erreur est survenue, veuillez réssayer.");
       }

@@ -1,11 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./App.css";
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  useLocation,
-} from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Cookies from "js-cookie";
 import axios from "axios";
 
@@ -64,26 +59,14 @@ function App() {
         setSortPrice={setSortPrice}
         setSearch={setSearch}
       />
-      <Switch>
-        <Route exact path="/">
-          <Home data={data} isLoading={isLoading} />
-        </Route>
-        <Route path="/signup">
-          <Signup setUser={setUser} />
-        </Route>
-        <Route path="/login">
-          <Login setUser={setUser} />
-        </Route>
-        <Route path="/publish">
-          <Publish token={token} />
-        </Route>
-        <Route path="/offer/:id">
-          <Offer />
-        </Route>
-        <Route path="/payment">
-          <Payment />
-        </Route>
-      </Switch>
+      <Routes>
+        <Route path="/" element={<Home data={data} isLoading={isLoading} />} />
+        <Route path="/signup" element={<Signup setUser={setUser} />} />
+        <Route path="/login" element={<Login setUser={setUser} />} />
+        <Route path="/publish" element={<Publish token={token} />} />
+        <Route path="/offer/:id" element={<Offer />} />
+        <Route path="/payment" element={<Payment />} />
+      </Routes>
     </Router>
   );
 }

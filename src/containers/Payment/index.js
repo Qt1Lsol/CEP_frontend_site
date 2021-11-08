@@ -9,13 +9,8 @@ import ProductSummary from "../../components/ProductSummary";
 const Payment = () => {
   const location = useLocation();
   const stripePromise = loadStripe("pk_test_5z9rSB8XwuAOihoBixCMfL6X");
-  const {
-    productName,
-    totalPrice,
-    protectionFees,
-    shippingFees,
-    price,
-  } = location.state;
+  const { productName, totalPrice, protectionFees, shippingFees, price } =
+    location.state;
 
   return (
     <div className="payment-wrapper">
