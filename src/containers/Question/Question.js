@@ -24,9 +24,9 @@ const Question = ({ token }) => {
         try {
             event.preventDefault();
 
-            const formData = new FormData();
-            formData.append("questionText", questionText);
-            formData.append("description", description);
+            // const formData = new FormData();
+            // formData.append("questionText", questionText);
+            // formData.append("description", description);
             // formData.append("latitude", latitude);
             // formData.append("longitude", longitude);
             // formData.append("linkWiki", linkWiki);
@@ -34,7 +34,14 @@ const Question = ({ token }) => {
 
             const response = await axios.post(
                 "https://cepbackend.herokuapp.com/question/publish",
-                formData
+
+                {
+                    questionText: questionText,
+                    description: description,
+                }
+
+
+                // formData
                 // {
                 //     headers: {
                 //         Authorization: "Bearer " + token,
