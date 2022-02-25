@@ -3,13 +3,18 @@ import { Link, useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
 import Loader from "react-loader-spinner";
 
-import "./index.css";
+import "./Question.css";
 
-const Question = ({ setUser }) => {
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
+const Question = ({ token }) => {
+
+    const [questionText, setQuestionText] = useState("blabla");
+    const [description, setDescription] = useState("description");
+    const [latitude, setLatitude] = useState("123");
+    const [longitude, setLongitude] = useState("456");
+    const [linkWiki, setLinkWiki] = useState("wiki");
+    const [linkPlace, setLinkPlace] = useState("place");
+
     const [errorMessage, setErrorMessage] = useState(null);
-    const [isLoading, setIsLoading] = useState(false);
 
     const navigate = useNavigate();
     const location = useLocation();
@@ -18,59 +23,121 @@ const Question = ({ setUser }) => {
     const handleSubmit = async (event) => {
         try {
             event.preventDefault();
-            setIsLoading(true);
+
+            const formData = new FormData();
+            formData.append("questionText", questionText);
+            formData.append("description", description);
+            // formData.append("latitude", latitude);
+            // formData.append("longitude", longitude);
+            // formData.append("linkWiki", linkWiki);
+            // formData.append("linkPlace", linkPlace);
+
             const response = await axios.post(
-                "https://lereacteur-vinted-api.herokuapp.com/user/login",
-                {
-                    email: email,
-                    password: password,
-                }
+                "https://cepbackend.herokuapp.com/question/publish",
+                formData
+                // {
+                //     headers: {
+                //         Authorization: "Bearer " + token,
+                //         "Content-Type": "multipart/form-data",
+                //     },
+                // }
             );
-            if (response.data.token) {
-                setUser(response.data.token);
-                setIsLoading(false);
-                navigate(fromPublish ? "/publish" : "/");
+
+            if (response.data._id) {
+                // redirectoin vers l'offre
+                navigate(`/question`);
             } else {
-                alert("Une erreur est survenue, veuillez réssayer.");
+                alert("Une erreur est survenue, veuillez réssayer");
             }
+
         } catch (error) {
             if (error.response.status === 401 || error.response.status === 400) {
-                setErrorMessage("Mauvais email et/ou mot de passe");
-                setIsLoading(false);
+                setErrorMessage("An error occured");
             }
-            console.log(error.message);
+
         }
     };
 
     return (
-        <div className="signup-container">
-            <h2>Se connecter</h2>
-            <form onSubmit={handleSubmit} className="signup-form">
-                <input
-                    onChange={(event) => {
-                        setEmail(event.target.value);
-                        setErrorMessage("");
-                    }}
-                    placeholder="Adresse email"
-                    type="email"
-                />
-                <input
-                    onChange={(event) => {
-                        setPassword(event.target.value);
-                    }}
-                    placeholder="Mot de passe"
-                    type="password"
-                />
-                <span className="signup-login-error-message">{errorMessage}</span>
-                {isLoading ? (
-                    <Loader type="Puff" color="#2CB1BA" height={40} width={40} />
-                ) : (
-                    <button disabled={isLoading ? true : false} type="submit">
-                        Se connecter
+        <div className="question-container">
+            <div className="separation"></div>
+            <div className="question-form">
+                <form onSubmit={handleSubmit} >
+                    <div className="bloc-form">
+                        <span>Poser votre question</span>
+                        <input
+                            onChange={(event) => {
+                                setQuestionText(event.target.value);
+                            }}
+                            placeholder="votre question"
+                            type="text"
+                        />
+                    </div>
+                    <div className="bloc-form">
+                        <span>Description de votre question</span>
+                        <input
+                            onChange={(event) => {
+                                setDescription(event.target.value);
+                            }}
+                            placeholder="il s'agit ... "
+                            type="text"
+                        />
+                    </div>
+                    <div className="bloc-form">
+                        <span>Coordonnées GPS : Latitude () || Longitude ()</span>
+                        <div className="bloc-gps">
+                            <div>
+                                <input
+                                    onChange={(event) => {
+                                        setLatitude(event.target.value);
+                                    }}
+                                    placeholder="latitude ()"
+                                    type="text"
+                                />
+                            </div>
+                            <div className="separation"></div>
+                            <div>
+                                <input
+                                    onChange={(event) => {
+                                        setLongitude(event.target.value);
+                                    }}
+                                    placeholder="longitude ()"
+                                    type="text"
+                                />
+                            </div>
+                        </div>
+                    </div>
+                    <div className="bloc-form">
+                        <span>Lien url vers le site du wiki correspondant</span>
+                        <input
+                            onChange={(event) => {
+                                setLinkWiki(event.target.value);
+                            }}
+                            placeholder="url"
+                            type="text"
+                        />
+                    </div>
+                    <div className="bloc-form">
+                        <span>Lien url du point d'intéret</span>
+                        <input
+                            onChange={(event) => {
+                                setLinkPlace(event.target.value);
+                            }}
+                            placeholder="url"
+                            type="text"
+                        />
+                    </div>
+
+                    <span className="signup-login-error-message">{errorMessage}</span>
+
+                    <button className="button-submit" type="submit">
+                        Publier la question
                     </button>
-                )}
-            </form>
-            <Link to="/signup">Pas encore de compte ? Inscris-toi !</Link>
+
+                </form>
+            </div>
+            <div className="separation"></div>
+
         </div>
     );
 };

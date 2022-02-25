@@ -20,7 +20,7 @@ const Login = ({ setUser }) => {
       event.preventDefault();
       setIsLoading(true);
       const response = await axios.post(
-        "https://lereacteur-vinted-api.herokuapp.com/user/login",
+        "https://cepbackend.herokuapp.com/author/login",
         {
           email: email,
           password: password,
@@ -29,9 +29,9 @@ const Login = ({ setUser }) => {
       if (response.data.token) {
         setUser(response.data.token);
         setIsLoading(false);
-        navigate(fromPublish ? "/publish" : "/");
+        navigate(fromPublish ? "/question" : "/question");
       } else {
-        alert("Une erreur est survenue, veuillez réssayer.");
+        alert("Une erreur est survenue, veuillez réssayer.1");
       }
     } catch (error) {
       if (error.response.status === 401 || error.response.status === 400) {

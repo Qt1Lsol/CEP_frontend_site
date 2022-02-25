@@ -1,0 +1,49 @@
+.question-container {
+   display:flex;
+   justify-content:center;
+   align-items:center;
+  }
+
+  .question-form {
+    flex:3;
+    display:flex;
+    flex-direction: column;
+    justify-items: center;
+
+}
+
+.bloc-form {
+    margin-bottom: 20px;
+    background-color: #eaeaea;
+    width:100%;
+}
+
+span{
+padding-top:5px;
+padding-left:5px;
+flex:1;
+display: flex;
+}
+
+input {
+    flex:1;
+    display:flex;
+    padding-left:5px;
+    height:25px;
+    width :100%;
+    border: none;
+    border-bottom: solid 1px grey;
+    margin-top: 5px;
+}
+
+.separation{
+    flex:1;
+}
+
+.button-submit{
+    margin : 0 auto;
+    display:flex;
+    flex-direction: center;
+    align-items: center;
+    height : 25px;
+}

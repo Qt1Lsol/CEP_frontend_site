@@ -5,8 +5,8 @@ import axios from "axios";
 
 const Signup = ({ setUser }) => {
   const [email, setEmail] = useState("");
-  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState(null);
 
   const navigate = useNavigate();
@@ -15,16 +15,16 @@ const Signup = ({ setUser }) => {
     try {
       event.preventDefault();
       const response = await axios.post(
-        "https://lereacteur-vinted-api.herokuapp.com/user/signup",
+        "https://cepbackend.herokuapp.com/author/signup",
         {
           email: email,
           password: password,
-          username: username,
+          confirmPassword: confirmPassword,
         }
       );
       if (response.data.token) {
         setUser(response.data.token);
-        navigate("/");
+        navigate("/question");
       } else {
         alert("Une erreur est survenue, veuillez réssayer.");
       }
@@ -40,14 +40,6 @@ const Signup = ({ setUser }) => {
     <div className="signup-container">
       <h2>S'inscrire</h2>
       <form onSubmit={handleSubmit} className="signup-form">
-        <input
-          value={username}
-          onChange={(event) => {
-            setUsername(event.target.value);
-          }}
-          placeholder="Nom d'utilisateur"
-          type="text"
-        />
         <input
           value={email}
           onChange={(event) => {
@@ -66,14 +58,21 @@ const Signup = ({ setUser }) => {
           placeholder="Mot de passe"
           type="password"
         />
+
+        <span className="signup-login-error-message">{errorMessage}</span>
+        <input
+          value={confirmPassword}
+          onChange={(event) => {
+            setConfirmPassword(event.target.value);
+          }}
+          placeholder="Confirmer le mot de passe"
+          type="password"
+        />
+
         <div className="checkbox-container">
-          <div>
-            <input type="checkbox" />
-            <span>S'inscrire à notre newsletter</span>
-          </div>
           <p>
             En m'inscrivant je confirme avoir lu et accepté les Termes &
-            Conditions et Politique de Confidentialité de Vinted. Je confirme
+            Conditions et Politique de Confidentialité de Culture En Poche. Je confirme
             avoir au moins 18 ans.
           </p>
         </div>
