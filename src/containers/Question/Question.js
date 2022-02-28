@@ -14,6 +14,10 @@ const Question = ({ token }) => {
     const [linkWiki, setLinkWiki] = useState("wiki");
     const [linkPlace, setLinkPlace] = useState("place");
 
+    //image de la question
+    const [questionPicture, setQuestionPicture] = useState({});
+    const [preview, setPreview] = useState("");
+
     const [errorMessage, setErrorMessage] = useState(null);
 
     const navigate = useNavigate();
@@ -31,6 +35,7 @@ const Question = ({ token }) => {
             formData.append("longitude", longitude);
             formData.append("linkWiki", linkWiki);
             formData.append("linkPlace", linkPlace);
+            formData.append("questionPicture", questionPicture);
 
             const response = await axios.post(
                 "https://cepbackend.herokuapp.com/question/publish",
@@ -40,7 +45,7 @@ const Question = ({ token }) => {
                     headers: {
                         Authorization: "Bearer " + token,
                         "Content-Type": "multipart/form-data",
-                    },
+                    }
                 }
             );
 
@@ -84,6 +89,43 @@ const Question = ({ token }) => {
                             type="text"
                         />
                     </div>
+
+                    {/* gestion de l'image */}
+
+                    <div className="file-select">
+                        {preview ? (
+                            <div className="dashed-preview-image">
+                                <img src={preview} alt="pré-visualisation" />
+                                <div
+                                    className="remove-img-button"
+                                    onClick={() => {
+                                        setPreview("");
+                                    }}
+                                >
+                                    X
+                                </div>
+                            </div>
+                        ) : (
+                            <div className="dashed-preview-without">
+                                <div className="input-design-default">
+                                    <label htmlFor="file" className="label-file">
+                                        <span className="input-sign">+</span>
+                                        <span>Ajoute une photo</span>
+                                    </label>
+                                    <input
+                                        id="file"
+                                        type="file"
+                                        className="input-file"
+                                        onChange={(event) => {
+                                            setQuestionPicture(event.target.files[0]);
+                                            setPreview(URL.createObjectURL(event.target.files[0]));
+                                        }}
+                                    />
+                                </div>
+                            </div>
+                        )}
+                    </div>
+
                     <div className="bloc-form">
                         <span>Coordonnées GPS : Latitude () || Longitude ()</span>
                         <div className="bloc-gps">

@@ -34,12 +34,14 @@ const Login = ({ setAuthor }) => {
         alert("Une erreur est survenue, veuillez réssayer.1");
       }
     } catch (error) {
-      if (error.response.status === 401 || error.response.status === 400) {
+
+      if (error.response.status === 401) {
         setErrorMessage("Mauvais email et/ou mot de passe");
         setIsLoading(false);
       }
+
       console.log(error.message);
-    }
+    };
   };
 
   return (
