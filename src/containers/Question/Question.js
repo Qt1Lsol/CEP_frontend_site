@@ -18,6 +18,10 @@ const Question = ({ token }) => {
     const [questionPicture, setQuestionPicture] = useState({});
     const [preview, setPreview] = useState("");
 
+    //image de la question
+    const [questionAudio, setQuestionAudio] = useState({});
+    const [previewAudio, setPreviewAudio] = useState("");
+
     const [errorMessage, setErrorMessage] = useState(null);
 
     const navigate = useNavigate();
@@ -36,6 +40,7 @@ const Question = ({ token }) => {
             formData.append("linkWiki", linkWiki);
             formData.append("linkPlace", linkPlace);
             formData.append("questionPicture", questionPicture);
+            formData.append("questionAudio", questionAudio);
 
             const response = await axios.post(
                 "https://cepbackend.herokuapp.com/question/publish",
@@ -88,6 +93,53 @@ const Question = ({ token }) => {
                             placeholder="il s'agit ... "
                             type="text"
                         />
+                    </div>
+
+                        {/* gestion de l'audio */}
+
+                              <div className="file-select">
+                        {previewAudio ? (
+                            
+                            <div className="dashed-preview-image">
+
+                                    <figure>
+                                        <figcaption>{questionText}</figcaption>
+                                        <audio
+                                            controls
+                                            src={previewAudio}>
+                                                Your browser does not support the
+                                                <code>audio</code> element.
+                                        </audio>
+                                            <div
+                                                className="remove-img-button"
+                                                onClick={() => {
+                                                    setPreviewAudio("");
+                                                }}
+                                            >
+                                                X
+                                            </div>
+
+                                    </figure>
+                            </div>
+                        ) : (
+                            <div className="dashed-preview-without">
+                                <div className="input-design-default">
+                                    <label htmlFor="file" className="label-file">
+                                        <span className="input-sign">+</span>
+                                        <span>Ajoute une bande son</span>
+                                    </label>
+                                    <input
+                                        id="file"
+                                        type="file"
+                                        className="input-file"
+                                        onChange={(event) => {
+                                            setQuestionAudio(event.target.files[0]);
+                                            setPreviewAudio(URL.createObjectURL(event.target.files[0]));
+                                        }}
+                                    />
+                                </div>
+                            </div>
+                        )}
                     </div>
 
                     {/* gestion de l'image */}
