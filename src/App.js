@@ -36,6 +36,8 @@ function App() {
     }
   };
 
+  console.log(token)
+
   useEffect(() => {
     const fetchData = async () => {
       const response = await axios.get(

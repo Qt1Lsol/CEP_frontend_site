@@ -5,7 +5,7 @@ import Loader from "react-loader-spinner";
 
 import "./index.css";
 
-const Login = ({ setUser }) => {
+const Login = ({ setAuthor }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState(null);
@@ -27,7 +27,7 @@ const Login = ({ setUser }) => {
         }
       );
       if (response.data.token) {
-        setUser(response.data.token);
+        setAuthor(response.data.token);
         setIsLoading(false);
         navigate(fromPublish ? "/question" : "/question");
       } else {

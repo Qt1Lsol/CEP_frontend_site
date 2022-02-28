@@ -9,8 +9,8 @@ const Question = ({ token }) => {
 
     const [questionText, setQuestionText] = useState("blabla");
     const [description, setDescription] = useState("description");
-    const [latitude, setLatitude] = useState("123");
-    const [longitude, setLongitude] = useState("456");
+    const [latitude, setLatitude] = useState(123);
+    const [longitude, setLongitude] = useState(456);
     const [linkWiki, setLinkWiki] = useState("wiki");
     const [linkPlace, setLinkPlace] = useState("place");
 
@@ -24,35 +24,29 @@ const Question = ({ token }) => {
         try {
             event.preventDefault();
 
-            // const formData = new FormData();
-            // formData.append("questionText", questionText);
-            // formData.append("description", description);
-            // formData.append("latitude", latitude);
-            // formData.append("longitude", longitude);
-            // formData.append("linkWiki", linkWiki);
-            // formData.append("linkPlace", linkPlace);
+            const formData = new FormData();
+            formData.append("questionText", questionText);
+            formData.append("description", description);
+            formData.append("latitude", latitude);
+            formData.append("longitude", longitude);
+            formData.append("linkWiki", linkWiki);
+            formData.append("linkPlace", linkPlace);
 
             const response = await axios.post(
                 "https://cepbackend.herokuapp.com/question/publish",
+                formData,
 
                 {
-                    questionText: questionText,
-                    description: description,
+                    headers: {
+                        Authorization: "Bearer " + token,
+                        "Content-Type": "multipart/form-data",
+                    },
                 }
-
-
-                // formData
-                // {
-                //     headers: {
-                //         Authorization: "Bearer " + token,
-                //         "Content-Type": "multipart/form-data",
-                //     },
-                // }
             );
 
             if (response.data._id) {
                 // redirectoin vers l'offre
-                navigate(`/question`);
+                navigate("/question");
             } else {
                 alert("Une erreur est survenue, veuillez réssayer");
             }
