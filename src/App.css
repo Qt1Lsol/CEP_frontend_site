@@ -3,7 +3,6 @@
 
 /* HEADER ******************** */
 
-
 /* SIGNUP ********************** */
 
 .signup-container {
@@ -380,22 +379,7 @@
   font-weight: 700;
   cursor: pointer;
 }
-.label-file {
-  cursor: pointer;
-  color: #0ab1ba;
-  font-weight: bold;
-}
-.label-file > span {
-  margin: 0 10px;
-  vertical-align: middle;
-}
-.label-file:hover {
-  color: #25a5c4;
-}
 
-.input-file {
-  display: none;
-}
 .input-sign {
   font-size: 40px;
 }

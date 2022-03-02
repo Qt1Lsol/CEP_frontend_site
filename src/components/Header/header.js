@@ -8,7 +8,7 @@ import "./header.css";
 
 const Header = ({
   token,
-  setUser,
+  setAuthor,
   setFetchRangeValues,
   sortPrice,
   setSortPrice,
@@ -43,11 +43,11 @@ const Header = ({
             <FontAwesomeIcon icon="search" className="search-input-icon" />
             Poster une question
           </button>
-
+          
 
           <button
             onClick={() => {
-              navigate("/signup");
+              navigate("/question/view");
             }}
             className="button-tab"
           >

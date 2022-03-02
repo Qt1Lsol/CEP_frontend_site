@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
 import Loader from "react-loader-spinner";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import "./Question.css";
 
@@ -97,10 +98,10 @@ const Question = ({ token }) => {
 
                         {/* gestion de l'audio */}
 
-                              <div className="file-select">
+                               <div className="bloc-form">
                         {previewAudio ? (
                             
-                            <div className="dashed-preview-image">
+                            <div className="dashed-preview-audio">
 
                                     <figure>
                                         <figcaption>{questionText}</figcaption>
@@ -110,7 +111,9 @@ const Question = ({ token }) => {
                                                 Your browser does not support the
                                                 <code>audio</code> element.
                                         </audio>
-                                            <div
+                                    </figure>
+
+                                    <div
                                                 className="remove-img-button"
                                                 onClick={() => {
                                                     setPreviewAudio("");
@@ -118,16 +121,14 @@ const Question = ({ token }) => {
                                             >
                                                 X
                                             </div>
-
-                                    </figure>
                             </div>
                         ) : (
                             <div className="dashed-preview-without">
                                 <div className="input-design-default">
-                                    <label htmlFor="file" className="label-file">
-                                        <span className="input-sign">+</span>
+                                    <div htmlFor="file" className="label-file">
+                                        <FontAwesomeIcon icon="search" className="search-input-icon" />
                                         <span>Ajoute une bande son</span>
-                                    </label>
+                                    </div>
                                     <input
                                         id="file"
                                         type="file"
@@ -203,22 +204,22 @@ const Question = ({ token }) => {
                         </div>
                     </div>
                     <div className="bloc-form">
-                        <span>Lien url vers le site du wiki correspondant</span>
+                        <span>Page web vers le site du wiki correspondant</span>
                         <input
                             onChange={(event) => {
                                 setLinkWiki(event.target.value);
                             }}
-                            placeholder="url"
+                            placeholder="page web"
                             type="text"
                         />
                     </div>
                     <div className="bloc-form">
-                        <span>Lien url du point d'intéret</span>
+                        <span>Page web du point d'intéret</span>
                         <input
                             onChange={(event) => {
                                 setLinkPlace(event.target.value);
                             }}
-                            placeholder="url"
+                            placeholder="page web"
                             type="text"
                         />
                     </div>
