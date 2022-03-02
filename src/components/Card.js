@@ -9,23 +9,22 @@ const Card = ({ data }) => {
         onClick={() => alert("Go to user profile !")}
         className="card-avatar-username"
       >
-        {data.owner && data.owner.account.avatar && (
-          <img
-            alt={data.product_name}
-            src={data.owner.account.avatar.secure_url}
-          />
-        )}
-        <span>{data.owner && data.owner.account.username}</span>
+        {data
+          // <img
+          //   alt={data.questionPicture}
+          //   src={data.questionPicture.secure_url}
+          // />
+        }
       </div>
 
-      <div onClick={() => navigate(`offer/${data._id}`)}>
+      {/* <div onClick={() => navigate(`offer/${data._id}`)}>
         <img alt={data.title} src={data.product_image.secure_url} />
         <div className="card-price-size-brand">
           <span>{data.product_price} €</span>
           <span>{data.product_details[1]["TAILLE"]}</span>
           <span>{data.product_details[0]["MARQUE"]}</span>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 };

@@ -40,18 +40,18 @@ function App() {
 
   console.log(token)
 
-  useEffect(() => {
-    const fetchData = async () => {
-      const response = await axios.get(
-        `https://lereacteur-vinted-api.herokuapp.com/offers?priceMin=${fetchRangeValues[0]
-        }&priceMax=${fetchRangeValues[1]}&sort=${sortPrice ? "price-desc" : "price-asc"
-        }&title=${search}`
-      );
-      setData(response.data);
-      setIsLoading(false);
-    };
-    fetchData();
-  }, [fetchRangeValues, sortPrice, search]);
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     const response = await axios.get(
+  //       `https://lereacteur-vinted-api.herokuapp.com/offers?priceMin=${fetchRangeValues[0]
+  //       }&priceMax=${fetchRangeValues[1]}&sort=${sortPrice ? "price-desc" : "price-asc"
+  //       }&title=${search}`
+  //     );
+  //     setData(response.data);
+  //     setIsLoading(false);
+  //   };
+  //   fetchData();
+  // }, [fetchRangeValues, sortPrice, search]);
   return (
     <Router>
       <Header

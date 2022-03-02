@@ -36,7 +36,7 @@ const Header = ({
 
           <button
             onClick={() => {
-              navigate("/signup");
+              navigate("/question");
             }}
             className="button-tab"
           >

@@ -56,17 +56,14 @@ const Question = ({ token }) => {
             );
 
             if (response.data._id) {
-                // redirectoin vers l'offre
+                // redirectoin vers question pour ne saisir un autre
                 navigate("/question");
             } else {
                 alert("Une erreur est survenue, veuillez réssayer");
             }
 
         } catch (error) {
-            if (error.response.status === 401 || error.response.status === 400) {
-                setErrorMessage("An error occured");
-            }
-
+            setErrorMessage("An error occured");
         }
     };
 
@@ -124,22 +121,22 @@ const Question = ({ token }) => {
                             </div>
                         ) : (
                             <div className="dashed-preview-without">
-                                <div className="input-design-default">
-                                    <div htmlFor="file" className="label-file">
-                                        <FontAwesomeIcon icon="search" className="search-input-icon" />
-                                        <span>Ajoute une bande son</span>
-                                    </div>
-                                    <input
-                                        id="file"
-                                        type="file"
-                                        className="input-file"
-                                        onChange={(event) => {
-                                            setQuestionAudio(event.target.files[0]);
-                                            setPreviewAudio(URL.createObjectURL(event.target.files[0]));
-                                        }}
-                                    />
-                                </div>
+                            <div className="input-design-default">
+                                <label htmlFor="fileAudio" className="label-file">
+                                    <span className="input-sign">+</span>
+                                    <span>Ajoute une bande son</span>
+                                </label>
+                                <input
+                                    id="fileAudio"
+                                    type="file"
+                                    className="input-file"
+                                    onChange={(event) => {
+                                        setQuestionAudio(event.target.files[0]);
+                                        setPreviewAudio(URL.createObjectURL(event.target.files[0]));
+                                    }}
+                                />
                             </div>
+                        </div>
                         )}
                     </div>
 
@@ -161,12 +158,12 @@ const Question = ({ token }) => {
                         ) : (
                             <div className="dashed-preview-without">
                                 <div className="input-design-default">
-                                    <label htmlFor="file" className="label-file">
+                                    <label htmlFor="filePicture" className="label-file">
                                         <span className="input-sign">+</span>
                                         <span>Ajoute une photo</span>
                                     </label>
                                     <input
-                                        id="file"
+                                        id="filePicture"
                                         type="file"
                                         className="input-file"
                                         onChange={(event) => {

@@ -1,33 +1,39 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import Card from "../../components/Card";
-import tear from "../../assets/images/tear.svg";
 import Loader from "react-loader-spinner";
 
 
 import "./QuestionView.css";
 
-const QuestionView = ({}) => {
-
+const QuestionView = () => {
 
   const navigate = useNavigate();
 
   const [data, setData] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
  useEffect(() => {
+
+  try {
+
     const fetchData = async () => {
       const response = await axios.get(
         `https://cepbackend.herokuapp.com/question/view`);
 
       setData(response.data);
-      setIsLoading(true);
+      setIsLoading(false);
+
     };
 
     fetchData();
-  },[]);
 
+  }catch(error){
+
+    console.log(error.message);
+  };
+
+  },[]);
 
   return isLoading ? (
     <Loader
@@ -38,14 +44,13 @@ const QuestionView = ({}) => {
       width={80}
     />
   ) : (
-    <>
-      <div className="home-card-wrapper">
-        {data.offers &&
-          data.offers.map((card, index) => {
-            return <Card key={index} data={card} />;
-          })}
-      </div>
-    </>
+
+    <ul>
+      {data.map((index) => {
+        return <li key={index}><span>Firstname :</span><span>{data._id}</span></li>;
+      })}
+    </ul>
+
   );
 };
 
