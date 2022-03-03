@@ -3,11 +3,13 @@ import logo from "../../assets/images/logo_couleur_en_poche.jpeg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useNavigate, useLocation } from "react-router-dom";
 import PriceRange from "../PriceRange";
+import Cookies from "js-cookie";
 
 import "./header.css";
 
 const Header = ({
   token,
+  setToken,
   setAuthor,
   setFetchRangeValues,
   sortPrice,
@@ -22,7 +24,7 @@ const Header = ({
     <div className="header-container">
       <div
         onClick={() => {
-          navigate("/");
+          navigate("/login");
         }}
       >
         <img className="header-logo" src={logo} alt="Culture En Poche" />
@@ -57,17 +59,21 @@ const Header = ({
 
           <button
             onClick={() => {
-              navigate("/signup");
+              navigate("/profil");
             }}
             className="button-tab"
           >
             <FontAwesomeIcon icon="search" className="search-input-icon" />
-            Profils
+            Profil
           </button>
 
           <button
             onClick={() => {
-              navigate("/signup");
+
+              setToken(null);
+              Cookies.remove("token");
+
+              navigate("/login");
             }}
             className="button-tab"
           >

@@ -47,8 +47,43 @@ const QuestionView = () => {
 
     <ul>
       {data.map((index) => {
-        return <li key={index}><span>Firstname :</span><span>{data._id}</span></li>;
-      })}
+        console.log(index);
+        return (
+        <li key={index}>
+
+          {/* <span>{index}</span> */}
+
+          <span>Question:</span>
+          <span>{data[0].questionText}</span>
+
+            <figure>
+              <figcaption>{data[0].questionText}</figcaption>
+              <audio
+                controls
+                src={data[0].questionAudio.secure_url}>
+                Your browser does not support the
+                <code>audio</code> element.
+              </audio>
+            </figure>
+
+          <span>Description :</span>
+          <span>{data[0].description}</span>
+
+          <img src={data[0].questionPicture.secure_url} alt="pré-visualisation" />
+
+          <span>Coordonnées :</span>
+          <span>{data[0].latitude}</span>
+          <span>{data[0].longitude}</span>
+          <span>Lien wiki :</span>
+          <span>{data[0].LinkWiki}</span>
+          <span>Lien du lieu :</span>
+          <span>{data[0].LinkPlace}</span>
+          <span>id :</span>
+          <span>{data[1]._id}</span>
+          <span>{data[0]._id.getTimestamp}</span>
+          
+        </li>
+      )})}
     </ul>
 
   );

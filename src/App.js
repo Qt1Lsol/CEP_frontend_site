@@ -10,6 +10,7 @@ import Header from "./components/Header/header";
 import Home from "./containers/Home";
 import Signup from "./containers/Signup";
 import Login from "./containers/Login";
+import Profil from "./containers/Profil/Profil";
 import Question from "./containers/Question/Question";
 import QuestionView from "./containers/Question/QuestionView";
 import Publish from "./containers/Publish";
@@ -58,6 +59,7 @@ function App() {
         // setUser={setUser}
         setAuthor={setAuthor}
         token={token}
+        setToken={setToken}
         setFetchRangeValues={setFetchRangeValues}
         fetchRangeValues={fetchRangeValues}
         sortPrice={sortPrice}
@@ -68,6 +70,7 @@ function App() {
         <Route path="/" element={<Home data={data} isLoading={isLoading} />} />
         <Route path="/signup" element={<Signup setAuthor={setAuthor} />} />
         <Route path="/login" element={<Login setAuthor={setAuthor} />} />
+        <Route path="/profil" element={<Profil token={token} />} />
         <Route path="/question" element={<Question token={token} />} />
         <Route path="/question/view" element={<QuestionView token={token} setAuthor={setAuthor}  />} />
         <Route path="/publish" element={<Publish token={token} />} />
