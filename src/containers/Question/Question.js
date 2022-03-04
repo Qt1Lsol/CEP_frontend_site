@@ -44,7 +44,8 @@ const Question = ({ token }) => {
             formData.append("questionAudio", questionAudio);
 
             const response = await axios.post(
-                "https://cepbackend.herokuapp.com/question/publish",
+                // "https://cepbackend.herokuapp.com/question/publish",
+                "http://localhost:4000/question/publish",
                 formData,
 
                 {
@@ -58,12 +59,14 @@ const Question = ({ token }) => {
             if (response.data._id) {
                 // redirectoin vers question pour ne saisir un autre
                 navigate("/question");
+                console.log("réponse requete==>", response.data._id);
             } else {
                 alert("Une erreur est survenue, veuillez réssayer");
             }
 
         } catch (error) {
             setErrorMessage("An error occured");
+            console.log("catch question ==>", error.response);
         }
     };
 
@@ -177,14 +180,14 @@ const Question = ({ token }) => {
                     </div>
 
                     <div className="bloc-form">
-                        <span>Coordonnées GPS : Latitude () || Longitude ()</span>
+                        <span>Coordonnées GPS : Latitude (48.85838145257094) || Longitude (2.2945592741673058)</span> 
                         <div className="bloc-gps">
                             <div>
                                 <input
                                     onChange={(event) => {
                                         setLatitude(event.target.value);
                                     }}
-                                    placeholder="latitude ()"
+                                    placeholder="latitude (48.85838145257094)"
                                     type="text"
                                 />
                             </div>
@@ -194,12 +197,18 @@ const Question = ({ token }) => {
                                     onChange={(event) => {
                                         setLongitude(event.target.value);
                                     }}
-                                    placeholder="longitude ()"
+                                    placeholder="longitude (2.2945592741673058)"
                                     type="text"
                                 />
                             </div>
+                            
+                            <a  href={'https://www.google.fr/maps/dir//' + latitude + ',' + longitude} target="_blank"  class="button">Vérifier les coordonnées sur la carte</a>
+                            
                         </div>
                     </div>
+
+                   
+                   
                     <div className="bloc-form">
                         <span>Page web vers le site du wiki correspondant</span>
                         <input

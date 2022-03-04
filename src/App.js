@@ -7,7 +7,7 @@ import Cookies from "js-cookie";
 
 import Header from "./components/Header/header";
 
-import Home from "./containers/Home";
+import Home from "./containers/Home/Home";
 import Signup from "./containers/Signup";
 import Login from "./containers/Login";
 import Profil from "./containers/Profil/Profil";
@@ -67,7 +67,7 @@ function App() {
         setSearch={setSearch}
       />
       <Routes>
-        <Route path="/" element={<Home data={data} isLoading={isLoading} />} />
+        <Route path="/" element={<Home/>} />
         <Route path="/signup" element={<Signup setAuthor={setAuthor} />} />
         <Route path="/login" element={<Login setAuthor={setAuthor} />} />
         <Route path="/profil" element={<Profil token={token} />} />

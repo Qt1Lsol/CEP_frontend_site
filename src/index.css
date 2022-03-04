@@ -5,26 +5,12 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-h2 {
+h1 {
   font-size: 24px;
   font-weight: 400;
 }
 
-a {
-  text-decoration: none;
-  margin-top: 20px;
-}
-
-input[type="checkbox"],
-button {
-  cursor: pointer;
-}
-
-input,
-button {
-  outline: none;
-}
-
-img {
-  pointer-events: none;
+h2 {
+  font-size: 20px;
+  font-weight: 400;
 }

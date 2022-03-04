@@ -8,6 +8,20 @@ import "./Profil.css";
 
 const Profil = ({ token }) => {
 
+    //useState("") pour éditer un input
+    const [editEmail, setEditEmail] = useState("disabled");
+    const [editPassword, setEditPassword] = useState("disabled");
+    const [editEntityType, setEditEntityType] = useState("disabled");
+    const [editBusinessName, setEditBusinessName] = useState("disabled");
+    const [editNaf, setEditNaf] = useState("disabled");
+
+    //style inline 
+    const [siBackgroudColorInput, setSiBackgroudColorInput] = useState(false); 
+
+
+
+
+    //useState("") pour formulaire
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [entityType, setEntityType] = useState("");
@@ -69,9 +83,27 @@ const Profil = ({ token }) => {
                             placeholder="email"
                             type="text"
                             value ="test"
-                            disabled="disabled"
+                            disabled={editEmail}
+                            style={{ backgroudColor: siBackgroudColorInput ? "red" : "blue"}}
                         />
-                        <FontAwesomeIcon icon="search" className="search-input-icon" />
+
+                        <button 
+                            onClick={() => {
+                            if (editEmail===""){
+                            setEditEmail("disabled");
+                            setSiBackgroudColorInput(false)
+                            }else{
+                            setEditEmail("");
+                            setSiBackgroudColorInput(true)
+                            }
+
+                            }}
+                            className="button-tab"
+                            >
+                            <FontAwesomeIcon icon="search" className="search-input-icon" />
+                            Edit
+                        </button>
+
                     </div>
                     <div className="bloc-form">
                         <span>Mot de passe</span>
@@ -81,20 +113,56 @@ const Profil = ({ token }) => {
                             }}
                             placeholder="password"
                             type="password"
+                            value ="test"
+                            disabled={editPassword}
                         />
-                        <FontAwesomeIcon icon="search" className="search-input-icon" />
+
+                        <button
+                            onClick={() => {
+                            if (editPassword===""){
+                            setEditPassword("disabled");
+                            }else{
+                            setEditPassword("");
+                            }
+
+                            }}
+                            className="button-tab"
+                            >
+                            <FontAwesomeIcon icon="search" className="search-input-icon" />
+                            Edit
+                        </button>
+
                     </div>
 
                     <div className="bloc-form">
                         <span>Type d'entité</span>
-                        <input
-                            onChange={(event) => {
-                                setEntityType(event.target.value);
+
+                        <select disabled={editEntityType} onChange={(event)=>{
+                             setEntityType(event.target.value);
+                        }} >
+
+                            <option value="select">Selectionez :</option>
+                            <option value="association">Association</option>
+                            <option value="company">Entreprise</option>
+                            <option value="touristOffice">Office de tourisme</option>
+                            <option value="academic">Scolaire</option>
+                        </select>
+
+                          <button
+                            onClick={() => {
+                            if (editEntityType===""){
+                            setEditEntityType("disabled");
+                            }else{
+                            setEditEntityType("");
+                            }
+
                             }}
-                            placeholder="type d'entité"
-                            type="text"
-                        />
-                        <FontAwesomeIcon icon="search" className="search-input-icon" />
+                            className="button-tab"
+                            >
+                            <FontAwesomeIcon icon="search" className="search-input-icon" />
+                            Edit
+                        </button>
+
                     </div>
                     <div className="bloc-form">
                         <span>Raison sociale</span>
@@ -104,8 +172,24 @@ const Profil = ({ token }) => {
                             }}
                             placeholder="raison sociale"
                             type="text"
+                            value ="test"
+                            disabled={editBusinessName}
                         />
-                        <FontAwesomeIcon icon="search" className="search-input-icon" />
+
+                        <button
+                            onClick={() => {
+                            if (editBusinessName===""){
+                            setEditBusinessName("disabled");
+                            }else{
+                            setEditBusinessName("");
+                            }
+
+                            }}
+                            className="button-tab"
+                            >
+                            <FontAwesomeIcon icon="search" className="search-input-icon" />
+                            Edit
+                        </button>
                     </div>
 
                     <div className="bloc-form">
@@ -116,8 +200,25 @@ const Profil = ({ token }) => {
                             }}
                             placeholder="code naf"
                             type="text"
+                            value ="test"
+                            disabled={editNaf}
                         />
-                        <FontAwesomeIcon icon="search" className="search-input-icon" />
+
+                        <button
+                            onClick={() => {
+                            if (editNaf===""){
+                            setEditNaf("disabled");
+                            }else{
+                            setEditNaf("");
+                            }
+
+                            }}
+                            className="button-tab"
+                            >
+                            <FontAwesomeIcon icon="search" className="search-input-icon" />
+                            Edit
+                        </button>
+
                     </div>
 
                     <span className="signup-login-error-message">{errorMessage}</span>

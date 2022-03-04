@@ -24,7 +24,7 @@ const Header = ({
     <div className="header-container">
       <div
         onClick={() => {
-          navigate("/login");
+          navigate("/");
         }}
       >
         <img className="header-logo" src={logo} alt="Culture En Poche" />
@@ -44,6 +44,16 @@ const Header = ({
           >
             <FontAwesomeIcon icon="search" className="search-input-icon" />
             Poster une question
+          </button>
+
+          <button
+            onClick={() => {
+              navigate("/tuto");
+            }}
+            className="button-tab"
+          >
+            <FontAwesomeIcon icon="search" className="search-input-icon" />
+            Tuto
           </button>
           
 
