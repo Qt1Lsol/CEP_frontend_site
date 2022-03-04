@@ -45,47 +45,58 @@ const QuestionView = () => {
     />
   ) : (
 
+    <div>
+
     <ul>
-      {data.map((index) => {
-        console.log(index);
+      {data.map(question => {
         return (
-        <li key={index}>
+          <li key={question._id}>
+            <div key={question._id} className="question-card">
+              <div key={question._id} className="question-card-left">
+                  <span>Votre question :</span>
+                  <span>{question.questionText}</span>
 
-          {/* <span>{index}</span> */}
+                  <span>Description :</span>
+                  <span>{question.description}</span>
 
-          <span>Question:</span>
-          <span>{data[0].questionText}</span>
+                  <span>Coordonnées GPS :</span>
+                  <span>Latitude :</span><span>{question.latitude}</span>
+                  <span>Longitude :</span><span>{question.longitude}</span>
 
-            <figure>
-              <figcaption>{data[0].questionText}</figcaption>
-              <audio
-                controls
-                src={data[0].questionAudio.secure_url}>
-                Your browser does not support the
-                <code>audio</code> element.
-              </audio>
-            </figure>
+                  <span>Page web vers le site du wiki correspondant :</span>
+                  <span>{question.linkWiki}</span>
 
-          <span>Description :</span>
-          <span>{data[0].description}</span>
+                  <span>Page web du point d'intéret :</span>
+                  <span>{question.linkPlace}</span>
 
-          <img src={data[0].questionPicture.secure_url} alt="pré-visualisation" />
+              </div>
 
-          <span>Coordonnées :</span>
-          <span>{data[0].latitude}</span>
-          <span>{data[0].longitude}</span>
-          <span>Lien wiki :</span>
-          <span>{data[0].LinkWiki}</span>
-          <span>Lien du lieu :</span>
-          <span>{data[0].LinkPlace}</span>
-          <span>id :</span>
-          <span>{data[1]._id}</span>
-          <span>{data[0]._id.getTimestamp}</span>
-          
-        </li>
-      )})}
+              <div className="question-card-right">
+              <span>{question.questionPicture.secure_url}</span>
+              <span>{question.questionAudio.secure_url}</span>
+                <figure>
+                  <figcaption>Test</figcaption>
+                  <audio
+                      controls
+                      src="">
+                          Your browser does not support the
+                          <code>audio</code> element.
+                  </audio>
+                </figure>
+
+                <img src="" alt="image de la question" />
+
+              </div>
+
+            </div>
+          </li>
+
+        );
+        
+      })}
     </ul>
 
+    </div>
   );
 };
 

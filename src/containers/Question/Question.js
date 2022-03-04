@@ -207,8 +207,6 @@ const Question = ({ token }) => {
                         </div>
                     </div>
 
-                   
-                   
                     <div className="bloc-form">
                         <span>Page web vers le site du wiki correspondant</span>
                         <input
