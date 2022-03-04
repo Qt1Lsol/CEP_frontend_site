@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import logo from "../../assets/images/logo_couleur_en_poche.jpeg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useNavigate, useLocation } from "react-router-dom";
@@ -16,6 +16,8 @@ const Header = ({
   setSortPrice,
   setSearch,
 }) => {
+  // const [search, setSearch] = useState("");
+
   const navigate = useNavigate();
 
   const location = useLocation();
@@ -30,72 +32,65 @@ const Header = ({
         <img className="header-logo" src={logo} alt="Culture En Poche" />
       </div>
 
-
-
       {token ? (
+        <div className="tab-button-container">
+          <div className="tab-container">
+            <button
+              onClick={() => {
+                navigate("/question");
+              }}
+              className="button-tab"
+            >
+              <FontAwesomeIcon icon="search" className="search-input-icon" />
+              Poster une question
+            </button>
 
-        <div className="tab-container">
+            <button
+              onClick={() => {
+                navigate("/tuto");
+              }}
+              className="button-tab"
+            >
+              <FontAwesomeIcon icon="search" className="search-input-icon" />
+              Tuto
+            </button>
 
-          <button
-            onClick={() => {
-              navigate("/question");
-            }}
-            className="button-tab"
-          >
-            <FontAwesomeIcon icon="search" className="search-input-icon" />
-            Poster une question
-          </button>
+            <button
+              onClick={() => {
+                navigate("/question/view");
+              }}
+              className="button-tab"
+            >
+              <FontAwesomeIcon icon="search" className="search-input-icon" />
+              Mes questions
+            </button>
 
-          <button
-            onClick={() => {
-              navigate("/tuto");
-            }}
-            className="button-tab"
-          >
-            <FontAwesomeIcon icon="search" className="search-input-icon" />
-            Tuto
-          </button>
-          
+            <button
+              onClick={() => {
+                navigate("/profil");
+              }}
+              className="button-tab"
+            >
+              <FontAwesomeIcon icon="search" className="search-input-icon" />
+              Profil
+            </button>
 
-          <button
-            onClick={() => {
-              navigate("/question/view");
-            }}
-            className="button-tab"
-          >
-            <FontAwesomeIcon icon="search" className="search-input-icon" />
-            Mes questions
-          </button>
+            <button
+              onClick={() => {
+                setToken(null);
+                Cookies.remove("token");
 
-          <button
-            onClick={() => {
-              navigate("/profil");
-            }}
-            className="button-tab"
-          >
-            <FontAwesomeIcon icon="search" className="search-input-icon" />
-            Profil
-          </button>
-
-          <button
-            onClick={() => {
-
-              setToken(null);
-              Cookies.remove("token");
-
-              navigate("/login");
-            }}
-            className="button-tab"
-          >
-            <FontAwesomeIcon icon="search" className="search-input-icon" />
-            Se déconnecter
-          </button>
-
+                navigate("/login");
+              }}
+              className="button-tab"
+            >
+              <FontAwesomeIcon icon="search" className="search-input-icon" />
+              Se déconnecter
+            </button>
+          </div>
         </div>
-
-
       ) : (
-        <div>
+        <div className="tab-container">
           <button
             onClick={() => {
               navigate("/signup");

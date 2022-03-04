@@ -1,6 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import Card from "../../components/Card";
+// import Card from "../../components/Card";
 import tear from "../../assets/images/tear.svg";
 import Loader from "react-loader-spinner";
 

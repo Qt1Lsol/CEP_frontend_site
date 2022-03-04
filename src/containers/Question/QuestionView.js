@@ -2,38 +2,35 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import Loader from "react-loader-spinner";
-
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import QuestionCard from "../../components/QuestionCard";
 
 import "./QuestionView.css";
 
 const QuestionView = () => {
-
   const navigate = useNavigate();
 
   const [data, setData] = useState([]);
+  const [search, setSearch] = useState("");
   const [isLoading, setIsLoading] = useState(true);
 
- useEffect(() => {
+  useEffect(() => {
+    try {
+      const fetchData = async () => {
+        const response = await axios.get(
+          // `https://cepbackend.herokuapp.com/question/view?search=${search}`
+          `http://localhost:4000/question/view?search=${search}`
+        );
 
-  try {
+        setData(response.data);
+        setIsLoading(false);
+      };
 
-    const fetchData = async () => {
-      const response = await axios.get(
-        `https://cepbackend.herokuapp.com/question/view`);
-
-      setData(response.data);
-      setIsLoading(false);
-
-    };
-
-    fetchData();
-
-  }catch(error){
-
-    console.log(error.message);
-  };
-
-  },[]);
+      fetchData();
+    } catch (error) {
+      console.log(error.message);
+    }
+  }, [search]);
 
   return isLoading ? (
     <Loader
@@ -44,58 +41,19 @@ const QuestionView = () => {
       width={80}
     />
   ) : (
+    <div className="container">
+      <div className="search-container">
+        <input
+          type="text"
+          className="search-input"
+          placeholder="Recherche des questions"
+          onChange={(event) => setSearch(event.target.value)}
+        />
+      </div>
 
-    <div>
-
-    <ul>
-      {data.map(question => {
-        return (
-          <li key={question._id}>
-            <div key={question._id} className="question-card">
-              <div key={question._id} className="question-card-left">
-                  <span>Votre question :</span>
-                  <span>{question.questionText}</span>
-
-                  <span>Description :</span>
-                  <span>{question.description}</span>
-
-                  <span>Coordonnées GPS :</span>
-                  <span>Latitude :</span><span>{question.latitude}</span>
-                  <span>Longitude :</span><span>{question.longitude}</span>
-
-                  <span>Page web vers le site du wiki correspondant :</span>
-                  <span>{question.linkWiki}</span>
-
-                  <span>Page web du point d'intéret :</span>
-                  <span>{question.linkPlace}</span>
-
-              </div>
-
-              <div className="question-card-right">
-              <span>{question.questionPicture.secure_url}</span>
-              <span>{question.questionAudio.secure_url}</span>
-                <figure>
-                  <figcaption>Test</figcaption>
-                  <audio
-                      controls
-                      src="">
-                          Your browser does not support the
-                          <code>audio</code> element.
-                  </audio>
-                </figure>
-
-                <img src="" alt="image de la question" />
-
-              </div>
-
-            </div>
-          </li>
-
-        );
-        
+      {data.map((question) => {
+        return <QuestionCard key={question._id} question={question} />;
       })}
-    </ul>
-
     </div>
   );
 };

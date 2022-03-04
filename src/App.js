@@ -4,7 +4,6 @@ import "./App.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Cookies from "js-cookie";
 
-
 import Header from "./components/Header/header";
 
 import Home from "./containers/Home/Home";
@@ -39,7 +38,7 @@ function App() {
     }
   };
 
-  console.log(token)
+  console.log(token);
 
   // useEffect(() => {
   //   const fetchData = async () => {
@@ -53,6 +52,7 @@ function App() {
   //   };
   //   fetchData();
   // }, [fetchRangeValues, sortPrice, search]);
+
   return (
     <Router>
       <Header
@@ -67,12 +67,15 @@ function App() {
         setSearch={setSearch}
       />
       <Routes>
-        <Route path="/" element={<Home/>} />
+        <Route path="/" element={<Home />} />
         <Route path="/signup" element={<Signup setAuthor={setAuthor} />} />
         <Route path="/login" element={<Login setAuthor={setAuthor} />} />
         <Route path="/profil" element={<Profil token={token} />} />
         <Route path="/question" element={<Question token={token} />} />
-        <Route path="/question/view" element={<QuestionView token={token} setAuthor={setAuthor}  />} />
+        <Route
+          path="/question/view"
+          element={<QuestionView token={token} setAuthor={setAuthor} />}
+        />
         <Route path="/publish" element={<Publish token={token} />} />
         <Route path="/offer/:id" element={<Offer />} />
         <Route path="/payment" element={<Payment />} />
